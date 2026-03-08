@@ -4,23 +4,43 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collaborative Map</title>
-
-    <!-- Leaflet CSS -->
+    <title>Spot Finder Makassar</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Our CSS -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-    <div id="map"></div>
+    <div id="app">
 
-    <!-- Leaflet JS -->
+        <!-- SIDEBAR -->
+        <div id="sidebar">
+            <div id="sidebar-header">
+                <h1>📍 Spot Finder</h1>
+                <p>Makassar</p>
+            </div>
+
+            <div id="filter-bar">
+                <button class="filter-btn active" data-type="all">Semua</button>
+                <button class="filter-btn" data-type="Cafe">Cafe</button>
+                <button class="filter-btn" data-type="Coworking">Coworking</button>
+            </div>
+
+            <div id="place-list"></div>
+        </div>
+
+        <!-- MAP -->
+        <div id="map"></div>
+
+        <!-- DETAIL PANEL -->
+        <div id="detail-panel" class="hidden">
+            <button id="close-detail">✕</button>
+            <div id="detail-content"></div>
+        </div>
+
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Our JS -->
     <script src="js/map.js"></script>
     <script src="js/ui.js"></script>
 

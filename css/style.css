@@ -4,12 +4,215 @@
     box-sizing: border-box;
 }
 
-html,
 body {
-    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    overflow: hidden;
 }
 
-#map {
+#app {
+    display: flex;
     height: 100vh;
-    width: 100%;
+    position: relative;
+}
+
+/* SIDEBAR */
+#sidebar {
+    width: 320px;
+    min-width: 320px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+#sidebar-header {
+    padding: 20px;
+    background: #1a1a2e;
+    color: white;
+}
+
+#sidebar-header h1 {
+    font-size: 20px;
+}
+
+#sidebar-header p {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 2px;
+}
+
+#filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-btn {
+    padding: 6px 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    background: #1a1a2e;
+    color: white;
+    border-color: #1a1a2e;
+}
+
+#place-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.place-card {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.place-card:hover {
+    background: #f9f9f9;
+}
+
+.place-card.active {
+    background: #eef2ff;
+    border-left: 3px solid #1a1a2e;
+}
+
+.place-card-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a2e;
+}
+
+.place-card-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.badge-cafe {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.badge-coworking {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.place-card-address {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* MAP */
+#map {
+    flex: 1;
+}
+
+/* DETAIL PANEL */
+#detail-panel {
+    position: fixed;
+    bottom: 24px;
+    left: 344px;
+    width: 360px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 24px;
+    transition: all 0.3s;
+}
+
+#detail-panel.hidden {
+    display: none;
+}
+
+#close-detail {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+#detail-content h2 {
+    font-size: 18px;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+#detail-content .detail-type {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.detail-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.detail-item-label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.detail-item-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.detail-address {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.keramaian-sepi {
+    color: #2e7d32;
+}
+
+.keramaian-sedang {
+    color: #f57c00;
+}
+
+.keramaian-ramai {
+    color: #c62828;
 }
