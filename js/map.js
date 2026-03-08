@@ -39,18 +39,18 @@ function getMarkerColor(type) {
 }
 
 function createMarkerIcon(type) {
-    const color = getMarkerColor(type);
+    const emoji = type === 'Cafe' ? '☕' : '🖥️';
     return L.divIcon({
         className: '',
         html: `<div style="
-      background:${color};
-      width:14px; height:14px;
-      border-radius:50%;
-      border:2px solid white;
-      box-shadow:0 2px 6px rgba(0,0,0,0.3)
-    "></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
+            font-size: 20px;
+            line-height: 1;
+            background: transparent;
+            border: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3))
+        ">${emoji}</div>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
     });
 }
 
