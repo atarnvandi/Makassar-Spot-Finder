@@ -160,7 +160,57 @@ function showDetail(place) {
       </div>
     </div>
   `;
-    panel.classList.remove('hidden');
+
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        panel.classList.remove('hidden', 'full');
+        panel.classList.add('peek');
+        setupDrag(panel);
+    } else {
+        panel.classList.remove('hidden');
+    }
+}
+
+function setupDrag(panel) {
+    const handle = document.querySelector('.drag-handle');
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    // Remove old listeners by cloning
+    const newHandle = handle.cloneNode(true);
+    handle.parentNode.replaceChild(newHandle, handle);
+
+    newHandle.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+        isDragging = true;
+        e.preventDefault();
+    }, { passive: false });
+
+    panel.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+        isDragging = true;
+    });
+
+    panel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentY = e.touches[0].clientY;
+        const diff = startY - currentY;
+
+        if (diff > 30) {
+            panel.classList.remove('peek', 'hidden');
+            panel.classList.add('full');
+            isDragging = false;
+        } else if (diff < -30) {
+            panel.classList.remove('full', 'peek');
+            panel.classList.add('hidden');
+            isDragging = false;
+        }
+    });
+
+    panel.addEventListener('touchend', () => {
+        isDragging = false;
+    });
 }
 
 document.getElementById('close-detail').addEventListener('click', () => {
